@@ -1,0 +1,27 @@
+{{- /*
+  A single testimonial card. Use inside the testimonials shortcode.
+
+  {{< testimonial name="Ada" role="Editor" badge="Long-term client" avatar="images/ada.jpg" >}}
+  What they said.
+  {{< /testimonial >}}
+*/ -}}
+{{- $name := .Get "name" -}}
+{{- $inSlider := false -}}
+{{- with .Parent }}{{ $inSlider = ne (.Get "layout") "list" }}{{ end -}}
+{{- if $inSlider }}<div class="tslider-slide">{{ end -}}
+<div class="tcard">
+  <div class="tcard-head">
+    {{- with .Get "avatar" }}
+    <img class="tcard-avatar" src="{{ . | relURL }}" alt="" loading="lazy" width="56" height="56">
+    {{- else }}
+    <span class="tcard-avatar tcard-initial" aria-hidden="true">{{ substr $name 0 1 | upper }}</span>
+    {{- end }}
+    <div class="tcard-who">
+      <span class="tcard-name">{{ $name }}</span>
+      {{- with .Get "badge" }}<span class="tcard-badge">{{ . }}</span>{{ end }}
+      {{- with .Get "role" }}<span class="tcard-handle">{{ . }}</span>{{ end }}
+    </div>
+  </div>
+  <p class="tcard-text">{{ .Inner | strings.TrimSpace | markdownify }}</p>
+</div>
+{{- if $inSlider }}</div>{{ end -}}

@@ -1,0 +1,22 @@
+{{- /*
+  Wraps one or more testimonial shortcodes.
+
+  {{< testimonials >}} ... {{< /testimonials >}}                 slider
+  {{< testimonials layout="list" >}} ... {{< /testimonials >}}   stacked cards
+*/ -}}
+{{- if eq (.Get "layout") "list" -}}
+<div class="tcard-list">
+  {{ .Inner }}
+</div>
+{{- else -}}
+<div class="tslider" role="group" aria-roledescription="carousel" aria-label="{{ i18n "testimonials" }}">
+  <div class="tslider-track">
+    {{ .Inner }}
+  </div>
+  <div class="tslider-controls">
+    <button type="button" class="tslider-btn tslider-prev" aria-label="{{ i18n "previous" }}">&larr;</button>
+    <div class="tslider-dots"></div>
+    <button type="button" class="tslider-btn tslider-next" aria-label="{{ i18n "next" }}">&rarr;</button>
+  </div>
+</div>
+{{- end -}}
