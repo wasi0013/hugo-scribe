@@ -22,7 +22,7 @@ summaryLength = 40
   # socialImage = "images/social.png"
 
   # What first-time visitors see. Readers can change both from the gear menu.
-  defaultTheme = "auto"         # auto | light | sepia | dark
+  defaultTheme = "sepia"        # auto | light | sepia | dark
   defaultFont = "handwritten"   # handwritten | sans
 
 [markup.highlight]
