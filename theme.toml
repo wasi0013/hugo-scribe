@@ -1,0 +1,12 @@
+name = "Scribe"
+license = "MIT"
+licenselink = "https://github.com/wasi0013/hugo-scribe/blob/main/LICENSE"
+description = "A minimal blog theme with handwritten typography, light, sepia, and dark reading themes, and a font toggle for readers."
+homepage = "https://github.com/wasi0013/hugo-scribe"
+tags = ["blog", "minimal", "personal", "responsive", "dark mode", "light", "dark", "clean", "simple"]
+features = ["light, sepia, and dark themes", "reader font toggle", "syntax highlighting", "open graph", "rss", "testimonials shortcode"]
+min_version = "0.128.0"
+
+[author]
+  name = "Wasi"
+  homepage = "https://github.com/wasi0013"
