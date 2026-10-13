@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Three overlapping ink strokes">
+  <rect width="1200" height="630" fill="#fbf4e4"/>
+  <g fill="none" stroke-linecap="round" stroke-width="54">
+    <path d="M150 230c170-110 300 110 470 0s300-110 430 0" stroke="#c23028"/>
+    <path d="M150 330c170-110 300 110 470 0s300-110 430 0" stroke="#a24b2c" opacity=".85"/>
+    <path d="M150 430c170-110 300 110 470 0s300-110 430 0" stroke="#e08554" opacity=".85"/>
+  </g>
+</svg>
