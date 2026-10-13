@@ -15,8 +15,8 @@ summaryLength = 40
   showReadingTime = true
 
   # Image shown next to the site title. Path is relative to static/.
-  logo = "favicon.svg"
-  favicon = "favicon.svg"
+  logo = "favicon.png"
+  favicon = "favicon.png"
 
   # Fallback image for social sharing previews.
   # socialImage = "images/social.png"

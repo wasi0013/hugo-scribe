@@ -1,4 +1,6 @@
-# Scribe
+<h1 align="center">
+  <img src="images/logo.png" alt="Scribe" width="340">
+</h1>
 
 A minimal [Hugo](https://gohugo.io) theme for people who write. Handwritten
 typography, three reading themes, and a font toggle that lets every reader
@@ -88,7 +90,7 @@ theme = "hugo-scribe"
   dateFormat = "Jan 02, 2006"
   showReadingTime = true
   logo = "logo.png"
-  favicon = "favicon.svg"
+  favicon = "favicon.png"
   socialImage = "images/social.png"
   defaultTheme = "auto"
   defaultFont = "handwritten"
@@ -122,7 +124,7 @@ theme = "hugo-scribe"
 | `dateFormat`      | `"Jan 02, 2006"` | Date layout, in [Go's reference time](https://gohugo.io/functions/time/format/) notation.    |
 | `showReadingTime` | `true`           | Show the estimated reading time next to the date.                                            |
 | `logo`            | none             | Image shown next to the site title. Path relative to `static/`.                              |
-| `favicon`         | `"favicon.svg"`  | Browser tab icon. Path relative to `static/`.                                                |
+| `favicon`         | `"favicon.png"`  | Browser tab icon. Path relative to `static/`.                                                |
 | `socialImage`     | `logo`           | Fallback image for sharing previews. Use a PNG or JPEG of about 1200×630.                    |
 | `defaultTheme`    | `"auto"`         | Theme for first-time visitors: `auto`, `light`, `sepia`, or `dark`.                          |
 | `defaultFont`     | `"handwritten"`  | Font for first-time visitors: `handwritten` or `sans`.                                       |
