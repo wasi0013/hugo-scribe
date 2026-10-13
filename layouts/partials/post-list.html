@@ -1,0 +1,23 @@
+{{- /* Renders a paginated list of posts. Context: dict "page" Page "pages" Pages */ -}}
+{{- $page := .page -}}
+{{- $dateFormat := site.Params.dateFormat | default "Jan 02, 2006" -}}
+{{- $paginator := $page.Paginate .pages -}}
+<ul class="post-list">
+  {{- range $paginator.Pages }}
+  <li class="post-item">
+    <h2 class="post-item-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    <div class="post-item-meta">
+      {{- if not .Date.IsZero }}
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format $dateFormat }}</time>
+      {{- end }}
+      {{- if ne site.Params.showReadingTime false }}
+      <span class="reading-time">{{ i18n "readingTime" .ReadingTime }}</span>
+      {{- end }}
+    </div>
+    {{- with .Description | default (.Summary | plainify) }}
+    <p class="post-item-summary">{{ . | truncate 160 }}</p>
+    {{- end }}
+  </li>
+  {{- end }}
+</ul>
+{{ partial "pagination.html" $page }}

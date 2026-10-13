@@ -1,0 +1,6 @@
+{{ define "main" }}
+{{ with .Content }}
+<div class="post-content home-intro">{{ . }}</div>
+{{ end }}
+{{ partial "post-list.html" (dict "page" . "pages" (where .Site.RegularPages "Type" "in" .Site.MainSections)) }}
+{{ end }}

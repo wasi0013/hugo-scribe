@@ -1,0 +1,20 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{ with .Content }}
+<div class="post-content">{{ . }}</div>
+{{ end }}
+{{- /* Hugo resolves this template for both kinds: a term (/tags/hugo/) lists
+       its posts, a taxonomy (/tags/) lists its terms. */ -}}
+{{ if eq .Kind "term" }}
+{{ partial "post-list.html" (dict "page" . "pages" .Pages) }}
+{{ else }}
+<ul class="taxonomy-list">
+  {{- range .Data.Terms.Alphabetical }}
+  <li class="taxonomy-item">
+    <a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a>
+    <span class="taxonomy-count">{{ .Count }}</span>
+  </li>
+  {{- end }}
+</ul>
+{{ end }}
+{{ end }}

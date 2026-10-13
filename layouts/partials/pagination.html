@@ -1,0 +1,22 @@
+{{- $p := .Paginator -}}
+{{- if gt $p.TotalPages 1 }}
+<nav aria-label="{{ i18n "pagination" }}">
+  <ul class="pagination">
+    {{- with $p.Prev }}
+    <li class="page-item"><a class="page-link" href="{{ .URL }}" rel="prev" aria-label="{{ i18n "newerPosts" }}">&larr;</a></li>
+    {{- end }}
+    {{- range $p.Pagers }}
+      {{- $n := .PageNumber -}}
+      {{- $near := and (ge $n (sub $p.PageNumber 1)) (le $n (add $p.PageNumber 1)) -}}
+      {{- if or $near (eq $n 1) (eq $n $p.TotalPages) }}
+    <li class="page-item{{ if eq $n $p.PageNumber }} active{{ end }}"><a class="page-link" href="{{ .URL }}"{{ if eq $n $p.PageNumber }} aria-current="page"{{ end }}>{{ $n }}</a></li>
+      {{- else if or (eq $n (sub $p.PageNumber 2)) (eq $n (add $p.PageNumber 2)) }}
+    <li class="page-item disabled"><span class="page-link">&hellip;</span></li>
+      {{- end }}
+    {{- end }}
+    {{- with $p.Next }}
+    <li class="page-item"><a class="page-link" href="{{ .URL }}" rel="next" aria-label="{{ i18n "olderPosts" }}">&rarr;</a></li>
+    {{- end }}
+  </ul>
+</nav>
+{{- end }}

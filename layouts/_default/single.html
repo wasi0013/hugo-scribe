@@ -1,0 +1,68 @@
+{{ define "main" }}
+{{- $isPost := in .Site.MainSections .Type -}}
+{{- $dateFormat := .Site.Params.dateFormat | default "Jan 02, 2006" -}}
+<article>
+  <header class="post-header">
+    {{- if $isPost }}
+    {{- with .GetTerms "categories" }}
+    <div class="post-categories">
+      {{- range . }}
+      <a href="{{ .RelPermalink }}" class="category-link">{{ .LinkTitle }}</a>
+      {{- end }}
+    </div>
+    {{- end }}
+    {{- end }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- if $isPost }}
+    <div class="post-meta">
+      {{- if not .Date.IsZero }}
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format $dateFormat }}</time>
+      {{- end }}
+      {{- if ne .Site.Params.showReadingTime false }}
+      <span class="reading-time">{{ i18n "readingTime" .ReadingTime }}</span>
+      {{- end }}
+    </div>
+    {{- end }}
+  </header>
+
+  {{- with .Params.featured_image }}
+  <div class="featured-image">
+    <img src="{{ . | relURL }}" alt="">
+  </div>
+  {{- end }}
+
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+
+  {{- if $isPost }}
+  <footer class="post-footer">
+    {{- with .GetTerms "tags" }}
+    <div class="post-tags">
+      <div class="post-tags-label">{{ i18n "tags" }}</div>
+      <div class="tag-list">
+        {{- range . }}
+        <a href="{{ .RelPermalink }}" class="tag-link">{{ .LinkTitle }}</a>
+        {{- end }}
+      </div>
+    </div>
+    {{- end }}
+
+    <nav class="post-nav" aria-label="{{ i18n "postNavigation" }}">
+      <div class="post-nav-prev">
+        {{- with .PrevInSection }}
+        <span class="post-nav-label">&larr; {{ i18n "previous" }}</span>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        {{- end }}
+      </div>
+      <div class="post-nav-next">
+        {{- with .NextInSection }}
+        <span class="post-nav-label">{{ i18n "next" }} &rarr;</span>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        {{- end }}
+      </div>
+    </nav>
+  </footer>
+  {{- end }}
+</article>
+{{ end }}
