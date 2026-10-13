@@ -1,0 +1,60 @@
+[readingTime]
+one = "{{ .Count }} min read"
+other = "{{ .Count }} min read"
+
+[tags]
+other = "Tags"
+
+[previous]
+other = "Previous"
+
+[next]
+other = "Next"
+
+[mainNavigation]
+other = "Main navigation"
+
+[postNavigation]
+other = "Post navigation"
+
+[pagination]
+other = "Pagination"
+
+[newerPosts]
+other = "Newer posts"
+
+[olderPosts]
+other = "Older posts"
+
+[readingPreferences]
+other = "Reading preferences"
+
+[theme]
+other = "Theme"
+
+[themeLight]
+other = "Light"
+
+[themeSepia]
+other = "Sepia"
+
+[themeDark]
+other = "Dark"
+
+[font]
+other = "Font"
+
+[fontHandwritten]
+other = "Handwritten"
+
+[fontSans]
+other = "Sans-serif"
+
+[testimonials]
+other = "Testimonials"
+
+[notFound]
+other = "This page doesn't exist. It may have been moved."
+
+[backHome]
+other = "Go to the homepage"

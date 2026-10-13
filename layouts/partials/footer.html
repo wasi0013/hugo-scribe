@@ -1,0 +1,13 @@
+<footer class="site-footer">
+  <span>
+    {{- with .Site.Copyright }}{{ . | markdownify }}{{ else }}&copy; {{ now.Year }} {{ .Site.Params.author | default .Site.Title }}{{ end -}}
+  </span>
+  <span>
+    {{- range .Site.Menus.footer }}
+    <a href="{{ .URL }}">{{ .Name }}</a>
+    {{- end }}
+    {{- with .Site.Home.OutputFormats.Get "rss" }}
+    <a href="{{ .RelPermalink }}">RSS</a>
+    {{- end }}
+  </span>
+</footer>

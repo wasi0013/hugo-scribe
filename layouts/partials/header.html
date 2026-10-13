@@ -1,0 +1,43 @@
+{{- /* The home page lists the posts, so its menu entry is also current for
+       anything in a main section, unless that section has an entry of its own. */ -}}
+{{- $sectionInMenu := false -}}
+{{- range .Site.Menus.main -}}
+  {{- with .Page }}{{ if and .IsSection (eq .Section $.Section) }}{{ $sectionInMenu = true }}{{ end }}{{ end -}}
+{{- end -}}
+{{- $inMainSection := and (or .IsPage .IsSection) (in .Site.MainSections .Section) -}}
+<header class="site-header">
+  <div class="site-title">
+    <a href="{{ .Site.Home.RelPermalink }}">
+      {{- with .Site.Params.logo }}<img src="{{ . | relURL }}" alt="" class="site-logo" width="28" height="28">{{ end -}}
+      {{ .Site.Title }}</a>
+  </div>
+  <div class="site-header-right">
+    <nav class="site-nav" aria-label="{{ i18n "mainNavigation" }}">
+      {{- range .Site.Menus.main }}
+      {{- $current := or ($.IsMenuCurrent .Menu .) ($.HasMenuCurrent .Menu .) (eq $.RelPermalink .URL) -}}
+      {{- if and (not $current) $inMainSection (not $sectionInMenu) (eq .URL $.Site.Home.RelPermalink) -}}
+        {{- $current = true -}}
+      {{- end }}
+      <a href="{{ .URL }}"{{ if $current }} aria-current="page"{{ end }}>{{ .Name }}</a>
+      {{- end }}
+    </nav>
+    <button type="button" class="prefs-btn" id="prefs-btn" aria-label="{{ i18n "readingPreferences" }}" aria-expanded="false" aria-controls="prefs-panel" title="{{ i18n "readingPreferences" }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+  </div>
+  <div class="prefs-panel" id="prefs-panel">
+    <div class="prefs-row">
+      <span class="prefs-label">{{ i18n "theme" }}</span>
+      <div class="prefs-options theme-options">
+        <button type="button" data-set-theme="light" aria-pressed="false">{{ i18n "themeLight" }}</button>
+        <button type="button" data-set-theme="sepia" aria-pressed="false">{{ i18n "themeSepia" }}</button>
+        <button type="button" data-set-theme="dark" aria-pressed="false">{{ i18n "themeDark" }}</button>
+      </div>
+    </div>
+    <div class="prefs-row">
+      <span class="prefs-label">{{ i18n "font" }}</span>
+      <div class="prefs-options font-options">
+        <button type="button" data-set-font="handwritten" aria-pressed="false">{{ i18n "fontHandwritten" }}</button>
+        <button type="button" data-set-font="sans" aria-pressed="false">{{ i18n "fontSans" }}</button>
+      </div>
+    </div>
+  </div>
+</header>

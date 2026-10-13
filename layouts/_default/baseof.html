@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}"
+  {{- with .Site.Params.defaultTheme }}{{ if ne . "auto" }} data-theme="{{ . }}"{{ end }}{{ end }} data-font="{{ .Site.Params.defaultFont | default "handwritten" }}">
+<head>
+  <script>(function(){try{var d=document.documentElement,t=localStorage.getItem('theme'),f=localStorage.getItem('font');if(t)d.setAttribute('data-theme',t);if(f)d.setAttribute('data-font',f)}catch(e){}})()</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{- partial "head.html" . }}
+  {{- partial "fonts.html" . }}
+  {{- $css := resources.Get "css/main.css" }}
+  {{- with resources.Get "css/custom.css" }}
+    {{- $css = slice $css . | resources.Concat "css/scribe.css" }}
+  {{- end }}
+  <style>{{ ($css | minify).Content | safeCSS }}</style>
+  {{- partial "head-custom.html" . }}
+</head>
+<body>
+  <div class="site-wrapper">
+    {{- partial "header.html" . }}
+    <main>
+      {{- block "main" . }}{{ end }}
+    </main>
+    {{- partial "footer.html" . }}
+  </div>
+  {{- $js := resources.Get "js/main.js" | minify }}
+  <script>{{ $js.Content | safeJS }}</script>
+</body>
+</html>
